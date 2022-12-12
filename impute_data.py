@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# https://stackoverflow.com/a/2429517\
+# https://stackoverflow.com/a/2429517/
 
 
 import os
@@ -26,13 +26,15 @@ from rpy2.robjects.packages import importr
 from rpy2.robjects.conversion import localconverter
 
 import numpy as np
-import pandas as pd ## https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_dict.html
+import pandas as pd
+
 
 # Select CRAN mirror for R library downloads.
 # 81 == Bristol, UKs
 # utils.chooseCRANmirror(ind = 81)
 # utils.install_packages("sbgcop")
 # utils.install_packages("VIM")
+
 
 # Import required R libraries
 utils = importr("utils")
@@ -41,6 +43,8 @@ base = importr("base")
 vim = importr("VIM") # Used to visualise missing data
 # https://cran.r-project.org/web/packages/sbgcop/index.html
 sbgcop = importr("sbgcop") # Used for the Bayesian copula imputation
+
+
 
 
 # Impute Attribute Data *USING R* 
@@ -66,11 +70,11 @@ print(utils.head(survey_responses_imputation))
 
 survey_responses.info()
 print(
-    survey_responses["female"][survey_responses["female"].isna()],
-    survey_responses["edu_full"][survey_responses["edu_full"].isna()],
-    survey_responses["income"][survey_responses["income"].isna()],
-    survey_responses["hasPhone"][survey_responses["hasPhone"].isna()],
-    survey_responses["HH_Head"][survey_responses["HH_Head"].isna()],
+    survey_responses["female"][survey_responses["female"].isna()], # 154 Missing
+    survey_responses["income"][survey_responses["income"].isna()], # 8 Missing
+    survey_responses["hasPhone"][survey_responses["hasPhone"].isna()], # 2 Missing
+    survey_responses["edu_full"][survey_responses["edu_full"].isna()], # 4 Missing
+    survey_responses["HH_Head"][survey_responses["HH_Head"].isna()], # 275 Missing
     sep = "\n\n"
 )
 
@@ -106,13 +110,14 @@ with localconverter(robjects.default_converter + pandas2ri.converter):
     survey_responses_imputation = robjects.conversion.rpy2py(survey_responses_imputation)
 
 
-# Record which records are missing before updating (in place) the original
-# pandas data frame with the missing data
-missing_female = survey_responses["female"].isna()  # 154 Missing
-missing_income = survey_responses["income"].isna() # 8 Missing
-missing_hasPhone = survey_responses["hasPhone"].isna() # 2 Missing
-missing_edu_full = survey_responses["edu_full"].isna() # 4 Missing
-missing_HH_Head = survey_responses["HH_Head"].isna() # 275 Missing
+# Retain original version of the data with missing values before updating (in place).
+survey_responses_within_missing = survey_responses.copy(deep = True)
+
+missing_female = survey_responses_within_missing["female"].isna()  # 154 Missing
+missing_income = survey_responses_within_missing["income"].isna() # 8 Missing
+missing_hasPhone = survey_responses_within_missing["hasPhone"].isna() # 2 Missing
+missing_edu_full = survey_responses_within_missing["edu_full"].isna() # 4 Missing
+missing_HH_Head = survey_responses_within_missing["HH_Head"].isna() # 275 Missing
 
 
 # Use posterior means to populate missing values in the original pandas data 
@@ -126,18 +131,22 @@ survey_responses.update(
 )
 
 
-# Discretise the posterior means for the binary variables
+# Discretise the posterior means for the binary variables and reassign.
 # https://realpython.com/python-boolean/#python-booleans-as-numbers
-survey_responses["female"][missing_female] = (survey_responses["female"][missing_female] > 0.50).astype("float64")
-survey_responses["hasPhone"][missing_hasPhone] = (survey_responses["hasPhone"][missing_hasPhone] > 0.50).astype("float64")
-survey_responses["HH_Head"][missing_HH_Head] = (survey_responses["HH_Head"][missing_HH_Head] > 0.50).astype("float64")
+survey_responses.loc[missing_female, ["female"]] = (survey_responses.loc[missing_female, ["female"]] > 0.50).astype("float64")
+survey_responses.loc[missing_hasPhone, ["hasPhone"]] = (survey_responses.loc[missing_hasPhone, ["hasPhone"]] > 0.50).astype("float64")
+survey_responses.loc[missing_HH_Head, ["HH_Head"]] = (survey_responses.loc[missing_HH_Head, ["HH_Head"]] > 0.50).astype("float64")
 
 
-# Cast the columns with imputed data as the appropriate type.
-survey_responses["female"] = survey_responses["female"].astype("Int64")
-survey_responses["income"] = survey_responses["income"].astype("float64")
-survey_responses["hasPhone"] = survey_responses["hasPhone"].astype("Int64")
-survey_responses["edu_full"] = survey_responses["edu_full"].astype("float64")
-survey_responses["HH_Head"] = survey_responses["HH_Head"].astype("Int64")
+# Cast the columns with imputed data as the appropriate type as reassign.
+survey_responses = survey_responses.astype(
+    dtype = {
+        "female": "Int64",
+        "income": "float64",
+        "hasPhone": "Int64",
+        "edu_full": "float64",
+        "HH_Head": "Int64"
+    }
+)
 
 
