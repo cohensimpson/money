@@ -28,6 +28,11 @@ from rpy2.robjects.conversion import localconverter
 import numpy as np
 import pandas as pd
 
+pd.set_option("display.max_rows", 20)
+pd.set_option("display.min_rows", 20)
+
+
+
 
 # Select CRAN mirror for R library downloads.
 # 81 == Bristol, UKs
@@ -93,12 +98,12 @@ print(utils.head(sbgcop_mcmc_results[1]))
 
 # Unfold the output from sbgcop.sbgcop_mcmc
 # sbgcop.sbgcop_mcmc returns an R object containing (in order):
-# (1) C.psamp	= an array of size p x p x nsamp/odens, consisting of
+# (1) C.psamp = an array of size p x p x nsamp/odens, consisting of
 # posterior samples of the correlation matrix.
-# (2) Y.pmean	= the original datamatrix with imputed values replacing missing data.
+# (2) Y.pmean = the original datamatrix with imputed values replacing missing data.
 # (3) Y.impute = an array of size n x p x nsamp/odens, consisting of copies of the
 # original data matrix, with posterior samples of missing values included.
-# (4) LPC	= the log-probability of the latent variables at each saved sample.
+# (4) LPC = the log-probability of the latent variables at each saved sample.
 # For the analysis "Y.pmean" is needed.
 survey_responses_imputation = sbgcop_mcmc_results[list(sbgcop_mcmc_results.names).index("Y.pmean")]
 
@@ -131,11 +136,15 @@ survey_responses.update(
 )
 
 
-# Discretise the posterior means for the binary variables and reassign.
-# https://realpython.com/python-boolean/#python-booleans-as-numbers
-survey_responses.loc[missing_female, ["female"]] = (survey_responses.loc[missing_female, ["female"]] > 0.50).astype("float64")
-survey_responses.loc[missing_hasPhone, ["hasPhone"]] = (survey_responses.loc[missing_hasPhone, ["hasPhone"]] > 0.50).astype("float64")
-survey_responses.loc[missing_HH_Head, ["HH_Head"]] = (survey_responses.loc[missing_HH_Head, ["HH_Head"]] > 0.50).astype("float64")
+# TODO: Don't Round! Graham, J. W. (2009). Missing Data Analysis: Making It
+# Work in the Real World. Annual Review of Psychology, 60(1), 549–576.
+# https://doi.org/10.1146/annurev.psych.58.110405.085530
+
+# # Discretise the posterior means for the binary variables and reassign.
+# # https://realpython.com/python-boolean/#python-booleans-as-numbers
+# survey_responses.loc[missing_female, ["female"]] = (survey_responses.loc[missing_female, ["female"]] > 0.50).astype("float64")
+# survey_responses.loc[missing_hasPhone, ["hasPhone"]] = (survey_responses.loc[missing_hasPhone, ["hasPhone"]] > 0.50).astype("float64")
+# survey_responses.loc[missing_HH_Head, ["HH_Head"]] = (survey_responses.loc[missing_HH_Head, ["HH_Head"]] > 0.50).astype("float64")
 
 
 # Cast the columns with imputed data as the appropriate type as reassign.

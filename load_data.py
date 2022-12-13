@@ -9,6 +9,9 @@ os.chdir("/Users/cohen/Desktop IconFree/GitHub/money")
 import numpy as np
 import pandas as pd 
 
+pd.set_option("display.max_rows", 20)
+pd.set_option("display.min_rows", 20)
+
 
 
 
@@ -27,7 +30,6 @@ import pandas as pd
 # HH_Head: 1 == the head of the household;  0 == all other household members
 # religion (rlg): 1 == Catholic (dominant local religion); 0 == Other religion
 # ethnicity (eth): 1 == Lugbara (dominant local ethnicity); 0 == Other ethnic group
-
 
 # Primary Attribute Data
 survey_responses_AJPS = pd.read_csv(
@@ -86,7 +88,7 @@ survey_responses_CPS = pd.read_csv(
 survey_responses_CPS = survey_responses_CPS.loc[:, [ "villageId", "i",
                                                     "villageTxt", "hh",
                                                     "edu_full", "head",
-                                                    "rlg", "eth"
+                                                    "rlg"
                                                     ]
 ] 
 
@@ -108,8 +110,7 @@ survey_responses_CPS = survey_responses_CPS.astype(
         "HH_ID": "string",
         "edu_full": "string",
         "HH_Head": "Int64",
-        "rlg": "Int64",
-        "eth": "Int64"
+        "rlg": "Int64"
     }
 )
 
@@ -186,9 +187,10 @@ survey_responses.info()
 
 
 # Load social network data
-# These network data are arranged in a "long" format (i.e., each row of the data frame 
-# is an ordered dyad) and they detail information on one of six relationships 
-# between residents living in the same village plus within-village geographic distance.
+# These network data are arranged in a "long" or "edge list" format 
+# (i.e., each row of the data frame is an ordered dyad) and they
+# detail information on one of six relationships between residents
+# living in the same village plus within-village geographic distance.
 # Thus, villager i/i_ID is the sending/nominating actor and villager j/j_ID is 
 # the receiving/nominated actor. 
 # The relationship types are as follows: 
@@ -199,6 +201,10 @@ survey_responses.info()
 # Contgame: i voted for j to receive the village's money in a public goods game.
 # speak: i spoke to j about UBridge (not analysed for this study)
 # geo: geographic distance between i and j in meters (NA for all i, j not in same village).
+# Note, rows for the different relationships are stacked such that
+# an ordered dyad can appear multiple times if i/i_ID nominates j/j_ID
+# in response to multiple name generators and the data geographic distance. 
+# To see this, RUN: nominations.loc[nominations.index[nominations.index.duplicated()]]
 nominations = pd.read_csv(
     filepath_or_buffer = "ties.csv",
     header = 0,
@@ -242,6 +248,8 @@ nominations["j_ID"][~nominations["j_ID"].isin(survey_responses.index)].unique()
 # Save the types of relationships measured for each network survey.
 relationship_type = pd.unique(nominations["type"])
 
+# Table of the number of relationships of each type across the 16 villages
+nominations.value_counts(["type"], dropna = True)
 
 
 
@@ -260,8 +268,6 @@ relationship_type = pd.unique(nominations["type"])
 # pg_market:  general market in the village (1 = Yes, 0 = No)
 # pg_market_crops: marketplace for crops in the village (1 = Yes, 0 = No)
 # census_employ: village distance from Arua (nearest economic hub)
-
-
 villages = pd.read_csv(
     filepath_or_buffer = "villages.csv",
     header = 0,
@@ -290,24 +296,32 @@ villages["pg_market_any"] = villages["pg_market"] + villages["pg_market_crops"]
 # https://stackoverflow.com/a/69440643
 # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.mask.html
 # Note, "~villages["pg_market_any"].isna()" is read as "element is NOT missing"
-villages.loc[:, ["pg_market_any"]] = villages.loc[:, ["pg_market_any"]].mask(
-    cond = ~villages.loc[:, ["pg_market_any"]].isna(),
-    other = villages.loc[:, ["pg_market_any"]] > 0
+villages.loc[:, ["pg_market_any"]] = np.where(
+    (~villages.loc[:, ["pg_market_any"]].isna()) & (villages.loc[:, ["pg_market_any"]] > 0),
+     1, 0
 )
+# villages.loc[:, ["pg_market_any"]] = villages.loc[:, ["pg_market_any"]].mask(
+#     cond = ~villages.loc[:, ["pg_market_any"]].isna(),
+#     other = villages.loc[:, ["pg_market_any"]] > 0
+# )
 del villages["pg_market"], villages["pg_market_crops"]
 
 
 # Retain data only for the 16 villages in which network data were collected.
 # https://stackoverflow.com/questions/42268549/membership-test-in-pandas-data-frame-column
 village_IDs = pd.unique(survey_responses["village_ID"])
-villages = villages[villages["village_ID"].isin(village_IDs)]
+villages = villages.set_index("village_ID", drop = False)# .astype("string")
+villages.index = villages.index.astype("string")
+villages = villages.loc[villages["village_ID"].astype("string").isin(village_IDs), :]
 # villages.loc[villages["village_ID"].apply(func = lambda element: element in village_IDs), :]
 
 
 villages = villages.astype(
     dtype = {
         "village_ID": "string",
+        "census_pop": "Int64",
         "pg_savingsgroup": "Int64",
         "pg_market_any": "Int64"
     }
 )
+
