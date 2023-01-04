@@ -671,7 +671,7 @@ figure_1_para_coord = (
         show_legend = True
     )
     + p9.labs(
-        x = "\nVillage\n",
+        x = "\nType of Lender\n",
         y = "Posterior Mean Proportion + 95% Highest Density Interval (Square-Root Scale)\n"
     )
     + p9.scale_x_discrete(
@@ -761,7 +761,7 @@ figure_1_para_coord = (
         panel_grid_minor_y = p9.element_blank(),
         panel_spacing_x = 0.25,
         panel_spacing_y = 0.35,
-        axis_ticks_major_x = p9.element_line(size = 0.5, linetype = "solid", colour = "#1E1E1E"),
+        axis_ticks_major_x = p9.element_line(size = 0.75, linetype = "solid", colour = "#1E1E1E"),
         axis_ticks_minor_x = p9.element_blank(),
         axis_ticks_major_y = p9.element_blank(), 
         axis_ticks_minor_y = p9.element_blank(),
@@ -769,7 +769,7 @@ figure_1_para_coord = (
         axis_ticks_direction_y = "out", 
         axis_text_x = p9.element_text(family = "sans-serif", style = "normal", size = 10),
         axis_text_y = p9.element_text(family = "sans-serif", style = "normal", size = 10),
-        axis_title = p9.element_text(family = "sans-serif", style = "normal", size = 10, linespacing = 1.5),
+        axis_title = p9.element_text(family = "sans-serif", style = "normal", size = 10, linespacing = 1),
         legend_title = p9.element_blank(),
         legend_text = p9.element_text(family = "sans-serif", style = "normal", size = 10),
         plot_title = p9.element_text(family = "sans-serif", style = "normal", size = 10),
