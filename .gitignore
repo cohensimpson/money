@@ -1,2 +1,7 @@
 
 .Rhistory
+*.docx
+.DS_Store
+.gv
+.gv.pdf
+*.pkl
