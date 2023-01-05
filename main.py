@@ -4,14 +4,15 @@
 
 
 
- 
+
+
 """ 
 Replication Materials for "The Relational Bases of Informal Financial Cooperation".
 
 Python Version Used for Analysis: CPython 3.9.10
 PyMC Version Used for Analysis: 4.4.0
 
-Data reanalysed for here come from:
+Data reanalysed for my paper come from:
     
     Ferrali, R., Grossman, G., Platas, M. R., & Rodden, J. (2020). It Takes a
     Village: Peer Effects and Externalities in Technology Adoption.
@@ -56,9 +57,11 @@ import xarray
 np.random.seed(20200127) 
 
 
+
 # Set Number of CPU Cores for PyMC Parallel Processing
 # PyMC Uses No More than 4 CPU Cores
 cpu_cores = 4
+
 
 
 # TODO: Clarify if this is the best way to run all code components.
@@ -69,5 +72,7 @@ visualise_results = open("visualise_results.py")
 
 exec(load_data.read())
 exec(build_features.read())
-# exec(fit_models.read())
-# exec(visualise_results.read())
+exec(fit_models.read())
+exec(visualise_results.read())
+
+

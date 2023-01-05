@@ -647,15 +647,6 @@ joblib.dump([sex_model_trace, sex_model_loo], "sex_dm_model.pkl", compress = 2)
 # extended_model_trace, extended_model_loo = joblib.load("extended_dm_model.pkl")
 # sex_model_trace, sex_model_loo = joblib.load("sex_dm_model.pkl")
 
- 
- 
-
-pd.set_option("display.max_rows", 800)
-pd.set_option("display.min_rows", 800)
-# Examples/Models for Code Refactoring
-# https://discourse.pymc.io/t/hierarchical-logistic-regression/508
-# https://joshuacook.netlify.app/post/pymc-multilevel-spline/
-
 
 
 
@@ -669,6 +660,8 @@ pd.set_option("display.min_rows", 800)
 
 
 # Model Results + Basic Diagnostics
+# pd.set_option("display.max_rows", 800)
+# pd.set_option("display.min_rows", 800)
 print(az.summary(baseline_model_trace), "\n\n")
 print(az.summary(extended_model_trace), "\n\n")
 print(az.summary(sex_model_trace), "\n\n")
@@ -700,6 +693,9 @@ all_model_comparison = az.compare(
     method = "stacking"
 ) 
 print(all_model_comparison, "\n\n")
+
+
+
 
 # Key Model Diagnostics for Parameters
 # Baseline Model
