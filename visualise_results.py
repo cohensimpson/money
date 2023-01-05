@@ -645,7 +645,7 @@ model_pmeans["estimate_ID"] = (
     model_pmeans["parameter"].astype("string") + "_" + model_pmeans["model"].astype("string")
 )
 
- 
+
 # Fourth, create Figure 1
 figure_1_para_coord = (
     p9.ggplot(
