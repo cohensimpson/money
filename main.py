@@ -53,14 +53,20 @@ import xarray
 
 
 
+
 # Set Random Seed for Analyses
 np.random.seed(20200127) 
 
 
 
-# Set Number of CPU Cores for PyMC Parallel Processing
-# PyMC Uses No More than 4 CPU Cores
+
+# Set Number of CPU Cores for PyMC Parallel Processing + Define Markov Chains
+# Note, PyMC uses no more than four CPU cores.
 cpu_cores = 4
+markov_chains = 4
+draws_per_chain = 3000,
+tuning_iterations_per_chain = 2000,
+
 
 
 
@@ -74,5 +80,3 @@ exec(load_data.read())
 exec(build_features.read())
 exec(fit_models.read())
 exec(visualise_results.read())
-
-

@@ -362,6 +362,3 @@ all_villager_nominations[
         
      ]
 ].apply(axis = 0, func = lambda col: col.value_counts()).fillna(0)
-
-
-

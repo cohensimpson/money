@@ -1212,5 +1212,3 @@ supplementary_figure_2_concentration_factors.save(
 #    "80" : "#ACD39E",
 #    "81" : "#D9F0D3"
 # }
-
-

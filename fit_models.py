@@ -77,11 +77,11 @@ def extended_dm_model(*,
     total_categories = K,
     total_villagers = N,
     village_names = villages_IDchar,
-    ndraws = 3000,
-    ntune = 2000,
-    nchains = cpu_cores,
+    ndraws = draws_per_chain,
+    ntune = tuning_iterations_per_chain,
+    nchains = markov_chains,
     ncores = cpu_cores,
-    seeds = [20200127] * cpu_cores
+    seeds = [20200127] * markov_chains
     ) -> pm.Model:
     
     """ Fit extended marginalised Dirichlet-Multinomial (DM) model to the lender data.
@@ -298,11 +298,11 @@ def baseline_dm_model(*,
     total_categories = K,
     total_villagers = N,
     village_names = villages_IDchar,
-    ndraws = 3000,
-    ntune = 2000,
-    nchains = cpu_cores,
+    ndraws = draws_per_chain,
+    ntune = tuning_iterations_per_chain,
+    nchains = markov_chains,
     ncores = cpu_cores,
-    seeds = [20200127] * cpu_cores
+    seeds = [20200127] * markov_chains
     ) -> pm.Model:
     
     """ Fit baseline marginalised Dirichlet-Multinomial (DM) model to the lender data.
@@ -439,11 +439,11 @@ def sex_dm_model(*,
     total_categories = K,
     total_villagers = N,
     village_names = villages_IDchar,
-    ndraws = 3000,
-    ntune = 2000,
-    nchains = cpu_cores,
+    ndraws = draws_per_chain,
+    ntune = tuning_iterations_per_chain,
+    nchains = markov_chains,
     ncores = cpu_cores,
-    seeds = [20200127] * cpu_cores
+    seeds = [20200127] * markov_chains
     ) -> pm.Model:
     
     """ Fit Sex-Specific Marginalised Dirichlet-Multinomial (DM) model.
@@ -760,6 +760,3 @@ assert all(
         az.ess(sex_model_trace, method = "tail", prob = 0.95).to_dataframe() > 1000
     ).flatten()
 ), "Insufficient Tail Effective Sample Size for one or more parameters in Sex-Specific Model!"
-
-
-

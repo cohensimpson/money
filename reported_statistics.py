@@ -167,5 +167,3 @@ sum([
     )["pmean"].item()
     for lender in types_of_lender_not_indebted
 ])
-
-
