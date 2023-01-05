@@ -43,19 +43,21 @@ Finally, when re-running my analyses, some numerical results may differ slightly
  
  5) **visualise_results.py** (Script for Visualisation of Results with Plotnine)
  
- 6) **nodes.csv** (Monadic covariates for the individual villagers collected by Ferrali et al. (2020)[2] for their paper in the _American Journal of Political Science_ [2]) 
-
- 7) **nodes_CPS_Version_1.2.csv** (Dataset of monadic covariates that includes household membership which was used by Ferrali et al. (2021)[3] for their paper in _Comparative Political Studies_) 
-
- 8) **ties.csv** (Sociometric data on lending, kinship, and friendship for the individual villagers collected by Ferrali et al. [2]) 
-
- 9) **Ferrali_et_al_2020.pdf** [2] 
+ 6) **reported_statistics.py** (Script for Extracting Numeric Quantities Reported in the Results Section of My Paper)
  
- 10) **Ferrali_et_al_2021.pdf** [3]
+ 7) **nodes.csv** (Monadic covariates for the individual villagers collected by Ferrali et al. (2020)[2] for their paper in the _American Journal of Political Science_ [2]) 
+
+ 8) **nodes_CPS_Version_1.2.csv** (Dataset of monadic covariates that includes household membership which was used by Ferrali et al. (2021)[3] for their paper in _Comparative Political Studies_) 
+
+ 9) **ties.csv** (Sociometric data on lending, kinship, and friendship for the individual villagers collected by Ferrali et al. [2]) 
+
+ 10) **Ferrali_et_al_2020.pdf** [2] 
  
- 11) **dataverse_files_Ferrali_et_al_AJPS_Version_1 (2019-08-07).zip** (Ferrali et al.'s [1] [original replication materials](https://doi.org/10.7910/DVN/NOYBCQ))
+ 11) **Ferrali_et_al_2021.pdf** [3]
  
- 12) **dataverse_files_Ferrali_et_al_CPS_Version_1.2 (2021-06-01).zip** (Ferrali et al.'s [2] [original replication materials](https://doi.org/10.7910/DVN/YEFRPC))
+ 12) **dataverse_files_Ferrali_et_al_AJPS_Version_1 (2019-08-07).zip** (Ferrali et al.'s [1] [original replication materials](https://doi.org/10.7910/DVN/NOYBCQ))
+ 
+ 13) **dataverse_files_Ferrali_et_al_CPS_Version_1.2 (2021-06-01).zip** (Ferrali et al.'s [2] [original replication materials](https://doi.org/10.7910/DVN/YEFRPC))
 
 <br>
 <br> 
