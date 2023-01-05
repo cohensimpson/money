@@ -151,3 +151,21 @@ sum([
 
 
 
+
+# Sum of Posterior Mean Proportions of Lenders Who Non-Indebted
+types_of_lender_not_indebted = [
+    "friend_lender_ij", 
+    "family_lender_ij",
+    "friend_family_lender_ij",
+    "stranger_lender_ij"
+]
+
+sum([
+    model_pmeans.query(
+        f"model == '{model}' and parameter == '{parm}' and categories == '{lender}'",
+        inplace = False
+    )["pmean"].item()
+    for lender in types_of_lender_not_indebted
+])
+
+
