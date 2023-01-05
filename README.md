@@ -30,33 +30,33 @@ Here, you will find five Python scripts in addition to three ".csv" data files. 
 
 **_After_** you have placed the data files and all Python scripts in the same working directory/folder, installed the necessary Python modules (see "main.py" for a list of all necessary modules), and set the number of available computing cores for your machine (see "main.py"), you should be able to simply to run "main.py", which executes the other scripts, to redo my analyses. This will also carry out all of the goodness-of-fit tests and generate the figures in the paper using [Plotnine](https://plotnine.readthedocs.io/en/stable/) — a wonderful Python implementation of [R's "ggplot" library](https://ggplot2.tidyverse.org).
 
-Finally, when re-running my analyses, some numerical results may differ slightly from those reported in the paper due to stochastic perturbations. I have used the same random seed (20200127) to ensure exact reproducibility wherever possible. However, this is not always an option depending on the function. Also, note that models are fitting in a Bayesian framework using [PyMC — i.e., Python-based probabilistic-programming language](https://www.pymc.io/welcome.html). Accordingly, changing the number of CPU cores, which currently also controls the number of Markov chains for each model, could lead to somewhat different results.  
+Finally, when re-running my analyses, some numerical results may differ slightly from those reported in the paper due to stochastic perturbations. I have used the same random seed (20200127) to ensure exact reproducibility wherever possible. However, this is not always an option depending on the function. Also, note that models are fitting in a Bayesian framework using [PyMC — i.e., a Python-based probabilistic-programming language](https://www.pymc.io/welcome.html). Accordingly, changing the number of CPU cores, which currently also controls the number of Markov chains for each model, could lead to somewhat different results.  
 
 
 ## Summary of Key Files in Repository
- 1) main.py (Script for Loading Modules and Executing Other Parts of the Analysis)
+ 1) **main.py** (Script for Loading Modules and Executing Other Parts of the Analysis)
  
- 2) load_data.py (Script for Loading and Filtering Data)
+ 2) **load_data.py** (Script for Loading and Filtering Data)
  
- 3) build_features.py (Script for the Transformation of Data for Model Fitting)
+ 3) **build_features.py** (Script for the Transformation of Data for Model Fitting)
  
- 4) fit_models.py (Script for Writing + Estimating Dirichlet-Multinomial Models with PyMC)
+ 4) **fit_models.py** (Script for Writing + Estimating Dirichlet-Multinomial Models with PyMC)
  
- 5) visualise_results.py (Script for Visualisation of Results with Plotnine)
+ 5) **visualise_results.py** (Script for Visualisation of Results with Plotnine)
  
- 6) nodes.csv (Monadic covariates for the individual villagers collected by Ferrali et al. (2020)[2] for their paper in the _American Journal of Political Science_ [2]) 
+ 6) **nodes.csv** (Monadic covariates for the individual villagers collected by Ferrali et al. (2020)[2] for their paper in the _American Journal of Political Science_ [2]) 
 
- 7) nodes_CPS_Version_1.2.csv (Dataset of monadic covariates that includes household membership which was used by Ferrali et al. (2021)[3] for their paper in _Comparative Political Studies_) 
+ 7) **nodes_CPS_Version_1.2.csv** (Dataset of monadic covariates that includes household membership which was used by Ferrali et al. (2021)[3] for their paper in _Comparative Political Studies_) 
 
- 8) ties.csv (Sociometric data on lending, kinship, and friendship for the individual villagers collected by Ferrali et al. [2]) 
+ 8) **ties.csv** (Sociometric data on lending, kinship, and friendship for the individual villagers collected by Ferrali et al. [2]) 
 
- 9) Ferrali_et_al_2020.pdf [2] 
+ 9) **Ferrali_et_al_2020.pdf** [2] 
  
- 10) Ferrali_et_al_2021.pdf [3]
+ 10) **Ferrali_et_al_2021.pdf** [3]
  
- 11) dataverse_files_Ferrali_et_al_AJPS_Version_1 (2019-08-07).zip (Ferrali et al.'s [1] [original replication materials](https://doi.org/10.7910/DVN/NOYBCQ))
+ 11) **dataverse_files_Ferrali_et_al_AJPS_Version_1 (2019-08-07).zip** (Ferrali et al.'s [1] [original replication materials](https://doi.org/10.7910/DVN/NOYBCQ))
  
- 12) dataverse_files_Ferrali_et_al_CPS_Version_1.2 (2021-06-01).zip (Ferrali et al.'s [2] [original replication materials](https://doi.org/10.7910/DVN/YEFRPC))
+ 12) **dataverse_files_Ferrali_et_al_CPS_Version_1.2 (2021-06-01).zip** (Ferrali et al.'s [2] [original replication materials](https://doi.org/10.7910/DVN/YEFRPC))
  
  
 ## Key Citations for Replicators
