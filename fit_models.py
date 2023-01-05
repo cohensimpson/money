@@ -34,6 +34,10 @@ print(all_villager_nominations["female"].isna().value_counts(), "\n\n")
 all_villager_nominations = all_villager_nominations[~all_villager_nominations["female"].isna()]
 
 
+# The 2,559 Villagers nominate 6,052 Preferred Money Lenders
+all_villager_nominations["lender_ij"].sum()
+
+
 
 
 # Village (Group) and Villager (Nominator) IDs as integers/an index.
