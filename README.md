@@ -32,6 +32,9 @@ Here, you will find five Python scripts in addition to three ".csv" data files. 
 
 Finally, when re-running my analyses, some numerical results may differ slightly from those reported in the paper due to stochastic perturbations. I have used the same random seed (20200127) to ensure exact reproducibility wherever possible. However, this is not always an option depending on the function. Also, note that models are fitting in a Bayesian framework using [PyMC — i.e., a Python-based probabilistic-programming language](https://www.pymc.io/welcome.html). Accordingly, changing the number of CPU cores, which currently also controls the number of Markov chains for each model, could lead to somewhat different results.  
 
+<br>
+<br> 
+
 
 ## Summary of Key Files in Repository
  1) **main.py** (Script for Loading Modules and Executing Other Parts of the Analysis)
@@ -57,14 +60,20 @@ Finally, when re-running my analyses, some numerical results may differ slightly
  11) **dataverse_files_Ferrali_et_al_AJPS_Version_1 (2019-08-07).zip** (Ferrali et al.'s [1] [original replication materials](https://doi.org/10.7910/DVN/NOYBCQ))
  
  12) **dataverse_files_Ferrali_et_al_CPS_Version_1.2 (2021-06-01).zip** (Ferrali et al.'s [2] [original replication materials](https://doi.org/10.7910/DVN/YEFRPC))
- 
- 
+
+<br>
+<br> 
+
+
 ## Key Citations for Replicators
 [1] Simpson, C.R. In Prep. "The Relational Bases of Informal Financial Cooperation". Working Paper.
 
 [2] Ferrali, R., Grossman, G., Platas, M. R., & Rodden, J. (2020). It Takes a Village: Peer Effects and Externalities in Technology Adoption. _American Journal of Political Science_, 64(3), 536–553. https://doi.org/10.1111/ajps.12471
 
 [3] Ferrali, R., Grossman, G., Platas, M. R., & Rodden, J. (2021). Who Registers? Village Networks, Household Dynamics, and Voter Registration in Rural Uganda. _Comparative Political Studies_, 001041402110360. https://doi.org/10.1177/00104140211036048
+
+<br>
+<br> 
 
 
 ## Notes
