@@ -64,8 +64,8 @@ np.random.seed(20200127)
 # Note, PyMC uses no more than four CPU cores.
 cpu_cores = 4
 markov_chains = 4
-draws_per_chain = 3000,
-tuning_iterations_per_chain = 2000,
+draws_per_chain = 3000
+tuning_iterations_per_chain = 2000
 
 
 
