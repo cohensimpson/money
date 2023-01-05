@@ -761,19 +761,20 @@ figure_1_para_coord = (
         panel_grid_minor_y = p9.element_blank(),
         panel_spacing_x = 0.25,
         panel_spacing_y = 0.35,
-        axis_ticks_major_x = p9.element_line(size = 0.75, linetype = "solid", colour = "#1E1E1E"),
+        axis_ticks_major_x = p9.element_line(size = 0.75, linetype = "solid", colour = "#767676"),
         axis_ticks_minor_x = p9.element_blank(),
         axis_ticks_major_y = p9.element_blank(), 
         axis_ticks_minor_y = p9.element_blank(),
         axis_ticks_direction_x = "out",
         axis_ticks_direction_y = "out", 
-        axis_text_x = p9.element_text(family = "sans-serif", style = "normal", size = 10),
-        axis_text_y = p9.element_text(family = "sans-serif", style = "normal", size = 10),
-        axis_title = p9.element_text(family = "sans-serif", style = "normal", size = 10, linespacing = 1),
+        axis_text_x = p9.element_text(family = "sans-serif", style = "normal", size = 10, colour = "#767676"),
+        axis_text_y = p9.element_text(family = "sans-serif", style = "normal", size = 10, colour = "#767676"),
+        axis_title_x = p9.element_text(family = "sans-serif", style = "normal", size = 10, colour = "#767676", linespacing = 1),
+        axis_title_y = p9.element_text(family = "sans-serif", style = "normal", size = 10, colour = "#767676", linespacing = 1),
         legend_title = p9.element_blank(),
-        legend_text = p9.element_text(family = "sans-serif", style = "normal", size = 10),
-        plot_title = p9.element_text(family = "sans-serif", style = "normal", size = 10),
-        strip_text = p9.element_text(family = "sans-serif", style = "normal", size = 10),
+        legend_text = p9.element_text(family = "sans-serif", style = "normal", size = 10, colour = "#767676"),
+        plot_title = p9.element_text(family = "sans-serif", style = "normal", size = 10, colour = "#767676"),
+        strip_text = p9.element_text(family = "sans-serif", style = "normal", size = 10, colour = "#767676"),
         figure_size = (16, 10) # Inches
     )
     # This (esoteric) line is used to control how the legend looks, where legend
@@ -858,7 +859,7 @@ figure_2_ppc = (
     )
     + p9.geom_ribbon(
         colour = "#767676",
-        alpha = 0.10,
+        alpha = 0.15,
         linetype = "None",
         show_legend = False
     )
@@ -877,7 +878,7 @@ figure_2_ppc = (
         yintercept = [0, 10, 100, 1000],
         linetype = "solid",
         alpha = 0.5, size = 0.15,
-        colour = "black"
+        colour = "#767676"
     )
     + p9.geom_line(
             mapping = p9.aes(
@@ -964,19 +965,20 @@ figure_2_ppc = (
         panel_grid_minor_y = p9.element_blank(),
         panel_spacing_x = 0.25,
         panel_spacing_y = 0.35,
-        axis_ticks_major_x = p9.element_line(size = 0.5, linetype = "solid", colour = "#1E1E1E", alpha = 0.05),
+        axis_ticks_major_x = p9.element_line(size = 0.5, linetype = "solid", colour = "#767676", alpha = 0.05),
         axis_ticks_minor_x = p9.element_blank(),
         axis_ticks_major_y = p9.element_blank(),
-        axis_ticks_minor_y = p9.element_line(size = 0.5, linetype = "solid", colour = "#1E1E1E", alpha = 0.05),
+        axis_ticks_minor_y = p9.element_line(size = 0.5, linetype = "solid", colour = "#767676", alpha = 0.05),
         axis_ticks_direction_x = "out",
         axis_ticks_direction_y = "out", 
-        axis_text_x = p9.element_text(family = "sans-serif", style = "normal", size = 8),
-        axis_text_y = p9.element_text(family = "sans-serif", style = "normal", size = 8),
-        axis_title = p9.element_text(family = "sans-serif", style = "normal", size = 8, linespacing = 1.5),
+        axis_text_x = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676"),
+        axis_text_y = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676"),
+        axis_title_x = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676", linespacing = 1),
+        axis_title_y = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676", linespacing = 1),
         legend_title = p9.element_blank(),
-        legend_text = p9.element_text(family = "sans-serif", style = "normal", size = 8),
-        plot_title = p9.element_text(family = "sans-serif", style = "normal", size = 8),
-        strip_text = p9.element_text(family = "sans-serif", style = "normal", size = 8),
+        legend_text = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676"),
+        plot_title = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676"),
+        strip_text = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676"),
         figure_size = (12.5, 13) # Inches
     )
     # This (esoteric) line is used to control how the legend looks, where legend
@@ -1072,19 +1074,20 @@ supplementary_figure_1_category_fractions = (
         panel_grid_minor_y = p9.element_blank(),
         panel_spacing_x = 0.25,
         panel_spacing_y = 0.35,
-        axis_ticks_major_x = p9.element_line(size = 0.5, linetype = "solid", colour = "#1E1E1E"),
+        axis_ticks_major_x = p9.element_line(size = 0.5, linetype = "solid", colour = "#767676"),
         axis_ticks_minor_x = p9.element_blank(),
         axis_ticks_major_y = p9.element_blank(), 
         axis_ticks_minor_y = p9.element_blank(),
         axis_ticks_direction_x = "out",
         axis_ticks_direction_y = "out", 
-        axis_text_x = p9.element_text(family = "sans-serif", style = "normal", size = 8),
-        axis_text_y = p9.element_text(family = "sans-serif", style = "normal", size = 8),
-        axis_title = p9.element_text(family = "sans-serif", style = "normal", size = 8, linespacing = 1.5),
+        axis_text_x = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676"),
+        axis_text_y = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676"),
+        axis_title_x = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676", linespacing = 1),
+        axis_title_y = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676", linespacing = 1),
         legend_title = p9.element_blank(),
-        legend_text = p9.element_text(family = "sans-serif", style = "normal", size = 8),
-        plot_title = p9.element_text(family = "sans-serif", style = "normal", size = 8),
-        strip_text = p9.element_text(family = "sans-serif", style = "normal", size = 8),
+        legend_text = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676"),
+        plot_title = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676"),
+        strip_text = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676"),
         figure_size = (12.5, 13) # Inches
     )
     # This (esoteric) line is used to control how the legend looks, where legend
@@ -1159,19 +1162,20 @@ supplementary_figure_2_concentration_factors = (
         panel_grid_minor_y = p9.element_blank(),
         panel_spacing_x = 0.25,
         panel_spacing_y = 0.35,
-        axis_ticks_major_x = p9.element_line(size = 0.5, linetype = "solid", colour = "#1E1E1E"),
+        axis_ticks_major_x = p9.element_line(size = 0.5, linetype = "solid", colour = "#767676"),
         axis_ticks_minor_x = p9.element_blank(),
         axis_ticks_major_y = p9.element_blank(), 
         axis_ticks_minor_y = p9.element_blank(),
         axis_ticks_direction_x = "out",
         axis_ticks_direction_y = "out", 
-        axis_text_x = p9.element_text(family = "sans-serif", style = "normal", size = 8),
-        axis_text_y = p9.element_text(family = "sans-serif", style = "normal", size = 8),
-        axis_title = p9.element_text(family = "sans-serif", style = "normal", size = 8, linespacing = 1.5),
+        axis_text_x = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676"),
+        axis_text_y = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676"),
+        axis_title_x = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676", linespacing = 1),
+        axis_title_y = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676", linespacing = 1),
         legend_title = p9.element_blank(),
-        legend_text = p9.element_text(family = "sans-serif", style = "normal", size = 8),
-        plot_title = p9.element_text(family = "sans-serif", style = "normal", size = 8),
-        strip_text = p9.element_text(family = "sans-serif", style = "normal", size = 8),
+        legend_text = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676"),
+        plot_title = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676"),
+        strip_text = p9.element_text(family = "sans-serif", style = "normal", size = 8, colour = "#767676"),
         figure_size = (12.5, 13) # Inches
     )
     # This (esoteric) line is used to control how the legend looks, where legend
