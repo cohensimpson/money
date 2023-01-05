@@ -8,16 +8,12 @@ Access to money is vital to day-to-day human survival. But who do we turn to for
 
 ![](https://github.com/cohensimpson/money/blob/main/F1_Proportions_Lender_Types_Parallel_Coordinates.svg) 
 
-<br> 
-
 **Figure 1.** Parallel-coordinate style plot (common y-axis) of posterior means for $\pi_{g,k}, \ldots, \pi_{g,K}$ — i.e., the proportion of money lenders of various types amongst $N = 2,559$ Ugandan villagers in 16 villages. Posterior means proportions (bullets) are overplotted and connected across the $K = 8$ types of lenders based on model specification. The red line joins the simplex $\vec{\pi} = \pi_{g,k}, \ldots, \pi_{g,K}$ from the baseline model, each orange lines joins a village-specific simplex $\vec{\pi}\_{g}$ from the extended model, and each of the 32 blue and yellow lines join a village- and sex-specific simplex $\vec{\pi}\_{g, \text{Male}}$ or $\vec{\pi}\_{g, \text{Female}}$ from the sex-specific model, where there are 16 lines for males and 16 for females. Posterior means are derived using three Dirichlet-Multinomial models (12,000 posterior draws). Vertical black lines indicate the 95% highest density interval for each proportion (i.e., each bullet) and are also overplotted. Note, values are plotted using a square-root scale for the y-axis. Thus, vertical changes are not constant. Overplotting is used to emphasise agreement across models.
 
 <br>
 <br> 
 
 ![](https://github.com/cohensimpson/money/blob/main/F2_Posterior_Predictive_Checks_Count_Frequencies.svg) 
-
-<br> 
 
 **Figure 2.** Small multiple of posterior predictive checks for the three Dirichlet-Multinomial models in Fig. 1. Model fit is assessed by comparing the observed frequency of counts (0 to 5) of various types of money lenders across the entire $N \times K$  matrix of compositional count vectors $y^{\text{Observed}}$ (i.e., the multivariate outcome) to the posterior mean frequency of counts across 12,000 fake versions of theses matrices simulated under each fitted model (i.e., one matrix $y^{\text{Synthetic}}$ for each sample from the posterior predictive distribution). For each posterior mean frequency, shaded regions indicate the range of values that are $\pm 1.96$ times the standard deviation of a given frequency across the 12,000 synthetic count matrices. Frequencies of counts, which range from zero to roughly 3,000, are plotted using a $\text{log}\_{10}$ scale for the y-axis. Thus, modest differences are exaggerated at lower frequencies and vertical changes are not constant, where each major axis tick represents a value ten-times larger than the major tick immediately prior. In general, models fit the data well, although each model is overoptimistic about the frequency that villagers have more than one indebted lender of various types.
 
