@@ -68,10 +68,15 @@ model_pmeans.query(
 # https://stackoverflow.com/a/57696055
 np.sort(
     model_pmeans.query(
-        f"parameter.isin(@fraction_parameter_names) and categories == 'friend_family_lender_ij'",
+        f"parameter.isin(@fraction_parameter_names) and model == 'Extended' and categories == 'friend_family_lender_ij'",
         inplace = False
     )["pmean"].values
 )
+
+model_pmeans.query(
+    f"parameter.isin(@fraction_parameter_names) and model == 'Extended' and categories == 'friend_family_lender_ij'",
+    inplace = False
+).sort_values(by = "pmean")
 
 
 
