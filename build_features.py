@@ -159,15 +159,9 @@ all_village_dyads = all_village_dyads.rename(columns = {"friend": "friend_ij"})
 # there is the data on non-coresident kin elicited using the sociometric
 # question for "family" (above).
 
-# According to Romain, the discrepancy between coresidence and the “family”
-# nominations in “ties.csv” is due to his team failing to properly clean
-# the original/baseline household membership data by updating these data 
-# through the addition of all new household members discovered during their
-# survey but who did not appear in the baseline household membership data.
-
 # Note that the “family” nominations in “ties.csv” already includes some of the
 # connections between household members uncovered by Romain and his colleagues 
-# during the survey. Accordingly, for my analysis for each village, I simply add
+# during the survey. Accordingly, for each village, I simply add
 # symmetric connections based on the “family” nominations in “ties.csv”
 # to symmetric connections constructed using the original/baseline household
 # membership data in "nodes_CPS_Version_1.2.csv". 
