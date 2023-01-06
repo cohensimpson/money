@@ -6,10 +6,11 @@
 
 
 
-# Multiple quantities are reported in the Results section of my paper. However,
-# as there is no "big table of estimates", only figures visualising estimates,
-# the following code is used to obtain the reported quantities and is included
-# on GitHub for transparency/reproducibility. Note that this script will only
+# Multiple quantities are reported in the Results/Discussion/Supplementary
+# Information sections of my paper. However, as there is no "big table of
+# results", only figures visualising the findings, the following code is used
+# to obtain the reported quantities as needed and it is included on GitHub
+# for transparency/reproducibility. Note that this script will only
 # run without error after running "visualiation.py" in full as the Pandas 
 # dataframe of results — i.e., "model_pmeans" — is created therin. 
 
@@ -172,3 +173,15 @@ sum([
     )["pmean"].item()
     for lender in types_of_lender_not_indebted
 ])
+
+
+
+
+# Percentage of 3,184 Villagers Naming the Maximum Number of Lenders and Friends (i.e., 5) 
+max_nominations = pd.get_dummies(nominations, columns = ["type"])
+max_nominations = max_nominations.loc[:, ["i_ID", "type_lender", "type_friend"]]
+max_nominations = max_nominations.groupby(by = ["i_ID"]).sum(numeric_only = True)
+
+max_nominations["type_lender"].value_counts()/3184
+max_nominations["type_friend"].value_counts()/3184
+
