@@ -938,9 +938,9 @@ figure_2_ppc = (
     # https://matplotlib.org/stable/tutorials/text/mathtext.html
     + p9.labs(
         x = ( # Parentheses creates an atom so we can break string over lines.
-            "\nMean Frequency Across 12,000 Samples from the Posterior Predictive"
-             " Distribuiton (Solid) versus Observed Frequency (Dashed) of Counts"
-             " (0 - 5) of Lenders of Each Type"
+            "\nNumber of Lenders (0 - 5) of Each Type\n\n"
+            "(Mean Frequency of Lender Count Across 12,000 Samples from the Posterior"
+            " Predictive Distribuiton [Solid] versus Observed Frequency [Dashed] of Count)"
         ),
         y = "Frequency in Modelled Compositional Count Matrix Y ($\mathregular{Log_{10}}$ Scale)\n",
         title = ""
