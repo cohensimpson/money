@@ -7,10 +7,14 @@
 
 
 # Load Primary and Secondary Attribute Data
-# These data contain  monadic (individual-level) attribute data for each
+# These data contain monadic (individual-level) attribute data for each
 # villager in each of the 16 villages wherein network data were collected.
 # The variables/features used for the analysis are as follows:
 # female: 1 == Female; 0 == Male
+# hh: The ID of each villager's household
+
+
+
 
 # Primary Attribute Data
 survey_responses_AJPS = pd.read_csv(
