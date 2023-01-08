@@ -29,7 +29,7 @@ all_villager_nominations = all_villager_nominations[all_villager_nominations["le
 
 
 # Drop the 137 villagers who have missing values for the variable "female"
-#2,559 villagers remain
+# 2,559 villagers remain
 print(all_villager_nominations["female"].isna().value_counts(), "\n\n")
 all_villager_nominations = all_villager_nominations[~all_villager_nominations["female"].isna()]
 
