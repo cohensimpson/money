@@ -672,7 +672,7 @@ figure_1_para_coord = (
     )
     + p9.labs(
         x = "\nType of Lender\n",
-        y = "Posterior Mean Proportion + 95% Highest Density Interval (Square-Root Scale)\n"
+        y = "Posterior Mean Proportion $\pi_{g, k}$ + 95% Highest Density Interval (Square-Root Scale)\n"
     )
     + p9.scale_x_discrete(
         breaks = [
@@ -1031,7 +1031,7 @@ supplementary_figure_1_category_fractions = (
      )
     + p9.labs(
         x = "\nVillage",
-        y = "Posterior Mean Proportion + 95% Highest Density Interval (Square-Root Scale)\n"
+        y = "Posterior Mean Proportion $\pi_{g, k}$ + 95% Highest Density Interval (Square-Root Scale)\n"
     )
     + p9.scale_x_discrete(
         breaks = ["frac"] + [f"frac_vill_{group}" for group in villages_IDchar],
@@ -1124,7 +1124,7 @@ supplementary_figure_2_concentration_factors = (
     )
     + p9.labs(
         x = "\nVillage",
-        y = "Posterior Mean Concentration + 95 Highest Density Interval\n"
+        y = "Posterior Mean Concentration $\phi_{g}$ + 95% Highest Density Interval\n"
     )
     + p9.scale_x_discrete(
         breaks = ["conc"] + [f"conc_vill_{group}" for group in villages_IDchar],
