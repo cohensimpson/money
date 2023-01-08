@@ -82,7 +82,11 @@ def extended_dm_model(*,
     nchains = markov_chains,
     ncores = cpu_cores,
     seeds = [20200127] * markov_chains
-    ) -> pm.Model:
+    ) -> tuple[
+        pm.Model,
+        az.data.inference_data.InferenceData,
+        az.stats.stats_utils.ELPDData
+    ]:
     
     """ Fit extended marginalised Dirichlet-Multinomial (DM) model to the lender data.
    
@@ -303,7 +307,11 @@ def baseline_dm_model(*,
     nchains = markov_chains,
     ncores = cpu_cores,
     seeds = [20200127] * markov_chains
-    ) -> pm.Model:
+    ) -> tuple[
+        pm.Model,
+        az.data.inference_data.InferenceData,
+        az.stats.stats_utils.ELPDData
+    ]:
     
     """ Fit baseline marginalised Dirichlet-Multinomial (DM) model to the lender data.
    
@@ -444,7 +452,11 @@ def sex_dm_model(*,
     nchains = markov_chains,
     ncores = cpu_cores,
     seeds = [20200127] * markov_chains
-    ) -> pm.Model:
+    ) -> tuple[
+        pm.Model,
+        az.data.inference_data.InferenceData,
+        az.stats.stats_utils.ELPDData
+    ]:
     
     """ Fit Sex-Specific Marginalised Dirichlet-Multinomial (DM) model.
    
