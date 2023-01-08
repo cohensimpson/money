@@ -119,10 +119,10 @@ survey_responses = survey_responses.rename(columns = {"village_ID_AJPS": "villag
 # friend: i named j as a friend.
 # solver: i named j as someone she would go to to solve a problem.
 # Contgame: i voted for j to receive the village's money in a public goods game.
-# speak: i spoke to j about UBridge 
+# speak: i spoke to j about UBridge (i.e., a government reporting platform)
 # geo: geographic distance between i and j in meters (NA for all i, j not in same village).
 
-# The only relationship analysed for my study are: lender, family, and friend.
+# The only relationships analysed for my study are: lender, family, and friend.
 
 # Note, rows for the different relationships are stacked such that
 # an ordered dyad can appear multiple times if i/i_ID nominates j/j_ID
