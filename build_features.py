@@ -102,7 +102,6 @@ all_village_dyads = all_village_dyads.fillna(
         "lender": 0,
         "friend": 0,
         "family": 0
-        
     }
 )
 
@@ -316,7 +315,8 @@ all_villager_nominations = all_villager_nominations.astype(
 
 
 
-
+# This analysis focuses on the composition of each villager's "basket" of lenders.
+# Thus, the number of lenders of each type should sum to a villager's total number of lenders.
 assert all(
     all_villager_nominations["lender_ij"]  == all_villager_nominations[
         [
@@ -343,16 +343,18 @@ print(all_village_dyads.info(), "\n\n")
 print(all_villager_nominations.info(), "\n\n")
 
 # Frequency of lenders of various types across the villagers
-all_villager_nominations[
-    [
-        "friend_lender_ij", 
-        "family_lender_ij",
-        "friend_family_lender_ij",
-        "stranger_lender_ij",
-        "friend_lender_ij_lender_ji", 
-        "family_lender_ij_lender_ji",
-        "friend_family_lender_ij_lender_ji",
-        "lender_ij_lender_ji"
-        
-     ]
-].apply(axis = 0, func = lambda col: col.value_counts()).fillna(0)
+print(
+    all_villager_nominations[
+        [
+            "friend_lender_ij", 
+            "family_lender_ij",
+            "friend_family_lender_ij",
+            "stranger_lender_ij",
+            "friend_lender_ij_lender_ji", 
+            "family_lender_ij_lender_ji",
+            "friend_family_lender_ij_lender_ji",
+            "lender_ij_lender_ji"
+            
+         ]
+    ].apply(axis = 0, func = lambda col: col.value_counts()).fillna(0)
+)
