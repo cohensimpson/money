@@ -90,7 +90,7 @@ class PymcModelBuilder:
         self.specification = model_specification.strip().lower()
         
         
-        # Multivariate Response Y + Total Number of Trials/Counts
+        # Multivariate Response Matrix Y + Total Number of Trials/Counts
         self.response_vars_names = observed_counts_colnames
         self.trials_var_name = total_count_colname
         
