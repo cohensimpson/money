@@ -358,3 +358,25 @@ print(
          ]
     ].apply(axis = 0, func = lambda col: col.value_counts()).fillna(0)
 )
+
+
+
+
+# Drop the 488 villagers who nominate zero lenders from the analysis.
+# 2,696 villagers remain
+print((all_villager_nominations["lender_ij"] > 0).value_counts(), "\n\n")
+all_villager_nominations_zeros = all_villager_nominations
+all_villager_nominations = all_villager_nominations[all_villager_nominations["lender_ij"] > 0]
+
+
+# Drop the 137 villagers who have missing values for the variable "female"
+# 2,559 villagers remain
+print(all_villager_nominations["female"].isna().value_counts(), "\n\n")
+all_villager_nominations = all_villager_nominations[~all_villager_nominations["female"].isna()]
+
+
+# The 2,559 Villagers nominate 6,052 Preferred Money Lenders
+all_villager_nominations["lender_ij"].sum()
+
+# Num. villagers in each village.
+group_sizes = all_villager_nominations["village_ID"].value_counts().to_dict()

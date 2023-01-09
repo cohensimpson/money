@@ -9,21 +9,21 @@
 # Create list of parameter names to aid with transforming results from PyMC/arviz
 fraction_parameter_names = (
     ["frac"]
-    + [f"frac_vill_{group}" for group in villages_IDchar]
-    + [f"frac_vill_{group}_{sex}" for group in villages_IDchar for sex in ["female", "male"]]
+    + [f"frac_vill_{group}" for group in village_IDs]
+    + [f"frac_vill_{group}_{sex}" for group in village_IDs for sex in ["female", "male"]]
 )
 concentration_parameter_names = (
     ["conc"] 
-    + [f"conc_vill_{group}" for group in villages_IDchar]
-    + [f"conc_vill_{group}_{sex}" for group in villages_IDchar for sex in ["female", "male"]]
+    + [f"conc_vill_{group}" for group in village_IDs]
+    + [f"conc_vill_{group}_{sex}" for group in village_IDs for sex in ["female", "male"]]
 )
 all_parameter_names = (
     ["hyper_alpha"]
     + ["hyper_lambda"]
     + ["frac"]
-    + [f"frac_vill_{group}" for group in villages_IDchar]
+    + [f"frac_vill_{group}" for group in village_IDs]
     + ["conc"]
-    + [f"conc_vill_{group}" for group in villages_IDchar]
+    + [f"conc_vill_{group}" for group in village_IDs]
 )
 parameter_categories = types_of_lender + ["common"]
 model_names = ["Baseline", "Extended", "Sex (Female)", "Sex (Male)", "Sex (Common)"]
@@ -36,8 +36,8 @@ model_names = ["Baseline", "Extended", "Sex (Female)", "Sex (Male)", "Sex (Commo
 def pymc_trace_xarray_to_pandas(
     inference_data, *,
     samples: bool = True,
-    villages_names: list[str] = villages_IDchar, 
-    villagers_names: list[str] = villagers_IDchar, 
+    villages_names: list[str] = village_IDs, 
+    villagers_names: list[str] = all_villager_nominations.index, 
     conc_parm_names: list[str] = concentration_parameter_names) -> pd.DataFrame: 
     """
     Extracts MCMC samples from a PyMC posterior (xarray dataset) and converts
@@ -370,7 +370,7 @@ def make_posterior_means(
 def prepare_pymc_trace_for_ppc(
     inference_data, *,
     model_data = all_villager_nominations,
-    villages_names: list[str] = villages_IDchar,
+    villages_names: list[str] = village_IDs,
     response_categories: list[str] = types_of_lender,
     conc_parm_names: list[str] = concentration_parameter_names) -> pd.DataFrame: 
     
@@ -587,21 +587,21 @@ def prepare_pymc_trace_for_ppc(
 # Figure 1 — Posterior Mean Proportions
 # First, derive the Pandas dataframe to pass to ggplot for plotting.
 baseline_model_pmean = make_posterior_means(
-    inference_data = baseline_model_trace,
+    inference_data = baseline_model.trace,
     demographic_params = False
 )
 baseline_model_pmean["model"] = "Baseline"
 baseline_model_pmean["sex"] = np.nan
 
 extended_model_pmean = make_posterior_means(
-    inference_data = extended_model_trace,
+    inference_data = extended_model.trace,
     demographic_params = False
 )
 extended_model_pmean["model"] = "Extended"
 extended_model_pmean["sex"] = np.nan
 
 sex_model_pmean = make_posterior_means(
-    inference_data = sex_model_trace,
+    inference_data = sex_model.trace,
     demographic_params = True
 )
 sex_model_pmean["model"] = "Sex (Common)" # For params. that are not sex-specific.
@@ -798,13 +798,13 @@ figure_1_para_coord.save(
 # First, derive the Pandas dataframe to pass to ggplot for plotting.
 # TODO: The calls to prepare_pymc_trace_for_ppc() are *VERY* slow (approx 10 min runtime). How to speed up?
 # TODO: Perhaps this is one way to speed things up with groupby: https://stackoverflow.com/a/53148084
-baseline_model_ppc = prepare_pymc_trace_for_ppc(inference_data = baseline_model_trace)
+baseline_model_ppc = prepare_pymc_trace_for_ppc(inference_data = baseline_model.trace)
 baseline_model_ppc["model"] = "Baseline" 
 
-extended_model_ppc = prepare_pymc_trace_for_ppc(inference_data = extended_model_trace)
+extended_model_ppc = prepare_pymc_trace_for_ppc(inference_data = extended_model.trace)
 extended_model_ppc["model"] = "Extended" 
 
-sex_model_ppc = prepare_pymc_trace_for_ppc(inference_data = sex_model_trace)
+sex_model_ppc = prepare_pymc_trace_for_ppc(inference_data = sex_model.trace)
 sex_model_ppc["model"] = "Sex" # For params. that are not sex-specific.
 
 
@@ -942,7 +942,7 @@ figure_2_ppc = (
             "(Mean Frequency of Lender Count Across 12,000 Samples from the Posterior"
             " Predictive Distribuiton [Solid] versus Observed Frequency [Dashed] of Count)"
         ),
-        y = "Frequency in Modelled Compositional Count Matrix Y ($\mathregular{Log_{10}}$ Scale)\n",
+        y = "Frequency in Modelled Compositional Count Matrix $Y$ ($\mathregular{Log_{10}}$ Scale)\n",
         title = ""
     )
     + p9.theme(
@@ -1034,8 +1034,8 @@ supplementary_figure_1_category_fractions = (
         y = "Posterior Mean Proportion $\pi_{g, k}$ + 95% Highest Density Interval (Square-Root Scale)\n"
     )
     + p9.scale_x_discrete(
-        breaks = ["frac"] + [f"frac_vill_{group}" for group in villages_IDchar],
-        labels = ["All"] + [f"V{group}" for group in villages_IDchar]
+        breaks = ["frac"] + [f"frac_vill_{group}" for group in village_IDs],
+        labels = ["All"] + [f"V{group}" for group in village_IDs]
     )
     + p9.scale_y_sqrt(
         limits = [0, 0.6],
@@ -1127,8 +1127,8 @@ supplementary_figure_2_concentration_factors = (
         y = "Posterior Mean Concentration $\phi_{g}$ + 95% Highest Density Interval\n"
     )
     + p9.scale_x_discrete(
-        breaks = ["conc"] + [f"conc_vill_{group}" for group in villages_IDchar],
-        labels = ["All"] + [f"V{group}" for group in villages_IDchar]
+        breaks = ["conc"] + [f"conc_vill_{group}" for group in village_IDs],
+        labels = ["All"] + [f"V{group}" for group in village_IDs]
     )
     + p9.scale_y_continuous(limits = [0, 15], breaks = [0, 5, 10, 15])
     + p9.scale_colour_manual(

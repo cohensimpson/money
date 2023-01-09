@@ -39,7 +39,7 @@ import arviz.labels as azl
 import aesara.tensor as at
 import graphviz as gv
 import itertools
-import joblib
+import cloudpickle
 import matplotlib.pyplot as plt
 import mizani as miz
 import numpy as np
