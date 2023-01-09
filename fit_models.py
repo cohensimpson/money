@@ -41,7 +41,7 @@ class PymcModelBuilder:
             Dataframe containing the cleaned data, including the columns for:
             1. The multivariate response variable Y (i.e., columns defining count vectors). 
             2. The total counts/trials n_i for each observation/sample i.
-            3. Sample-/observation-specific features to define the model (here, sex).
+            3. Sample-/observation-specific features to define the model (here, "sex").
             
         model_specification: str
             One of the following: "Baseline", "Extended", or "Sex". The provided
@@ -56,7 +56,7 @@ class PymcModelBuilder:
         
         config: dict[str: dict]
             Dictionary containing dictionaries of arguments used to control:
-            1. Sampling from the posterior
+            1. Sampling from the posterior:
             https://www.pymc.io/projects/docs/en/stable/api/generated/pymc.sample.html
                 1. draws: Number of posterior draws per Markov chain
                 2. tune: Number of tuning iterations per chain.
@@ -69,33 +69,36 @@ class PymcModelBuilder:
                 9. compute_convergence_check: Calculate core mode diagnostics?
                 10. idata_kwargs: "log_likelihood" == True = Calculate for all Observed Vars.
                 
-            2. Sampling from the posterior predictive distribution
+            2. Sampling from the posterior predictive distribution:
             https://www.pymc.io/projects/docs/en/stable/api/generated/pymc.sample_posterior_predictive.html
                 1. extend_inferencedata: add the posterior predictive samples to trace?
                 2. random_seed: Seed for sampling.
                 3. progressbar: Display progress bar for feedback?
             
-            3. Approximate leave-one-out cross-validation
+            3. Approximate leave-one-out cross-validation:
             https://python.arviz.org/en/stable/api/generated/arviz.loo.html
                 1. pointwise: Return pointwise predictive accuracy?
                 2. scale: Output scale for loo.
         """
         
         # Create Instance Variables/Attributes
+        # Data Used to Fit All Models
         self.data = model_data.copy(deep = True)
         
+        
+        # User's Desired Model Specification
         self.specification = model_specification.strip().lower()
         
+        
+        # Multivariate Response Y + Total Number of Trials/Counts
         self.response_vars_names = observed_counts_colnames
         self.trials_var_name = total_count_colname
         
         self.response_vars = self.data[self.response_vars_names]
         self.trials_var = self.data[self.trials_var_name]
         
-        self.config_sample = config["sample"]
-        self.config_sample_pp = config["sample_pp"]
-        self.config_loo = config["loo"]
         
+        # PyMC Model Coordinates (i.e., Dimension) + Observation Indices
         # Quite a few things to unpack. Create atom with parentheses to gather.
         (
             self.groups_IDx, self.groups_IDchar,
@@ -103,6 +106,12 @@ class PymcModelBuilder:
             self.N, self.K, self.G,
             self.coordinates
         ) = self.prepare_coordinates()
+        
+        
+        # Configuration Settings For Sampling/Cross-Validation
+        self.config_sample = config["sample"]
+        self.config_sample_pp = config["sample_pp"]
+        self.config_loo = config["loo"]
         
         self.model = None
         self.trace = None
@@ -538,6 +547,8 @@ class PymcModelBuilder:
         with self.model:
             print("PyMC version {0}".format(pm.__version__))
             self.trace = pm.sample(step = pm.NUTS(), **self.config_sample)
+            
+            # This will simply append the post. predictive samples. to self.trace
             pm.sample_posterior_predictive(trace =  self.trace, ** self.config_sample_pp)
         
         
