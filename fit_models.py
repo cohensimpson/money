@@ -44,15 +44,17 @@ class PymcModelBuilder:
             3. Sample-/observation-specific features to define the model (here, "sex").
             
         model_specification: str
-            One of the following: "Baseline", "Extended", or "Sex". The provided
-            argument determines which version of the Dirichlet-Multinomial
-            model is estimated. See the method "build_model" for details.
+            One of the following: "Baseline", "Extended", or "Sex". The value
+            provided for the argument determines which version of the 
+            Dirichlet-Multinomial model is estimated.
+            See the instance method "build_model" for details.
         
         observed_counts_colnames: list[str]
-            List containing the names of the columns in model_data for the response Y.
+            List containing the names of the columns in model_data that
+            correspond to the response Y.
         
         total_count_colname: str
-            Name of column in model_data containing total number of trials n_i.
+            Name of column in model_data that contains total number of trials n_i.
         
         config: dict[str: dict]
             Dictionary containing dictionaries of arguments used to control:
