@@ -120,6 +120,7 @@ class PymcModelBuilder:
         self.loo = None
         
         
+    # TODO: How best to put this together given so many instances attributes?
     # def __repr__(self):
     #     return f"PymcModelBuilder(model_data={self.data})"
     
