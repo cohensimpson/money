@@ -20,16 +20,19 @@ class PymcModelBuilder:
         config
     ):
         """
-        Initialise an instance of PymcModelBuilder. This class is used to
-        build and fit PyMC models in an objected-oriented fashion. My approach
-        relies on the typical behaviour of pm.model and pm.sample which
-        rely on the "with" keyword to create a context manager for building out
-        the model. It is assumed that PyMC has been imported as "pm".
+        Initialise an instance of PymcModelBuilder. This class is used to build
+        and fit PyMC models in an objected-oriented fashion. My approach leans
+        into the typical use of pm.model() whereby it is used alongside the
+        "with" keyword to create a context manager for building out a model.
+        
+        It is assumed that PyMC has been imported as "pm".
+        
         For other examples, see:
         
         https://5hv5hvnk.github.io/blogs/NewModelBuilder
         https://gist.github.com/twiecki/86b02349c60385eb6d77793d37bd96a9
         https://realpython.com/python3-object-oriented-programming/
+        https://docs.pymc.io/en/v5.0.1/learn/core_notebooks/pymc_overview.html
         
         
         Parameters
