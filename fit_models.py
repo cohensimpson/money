@@ -100,7 +100,7 @@ class PymcModelBuilder:
         self.trials_var = self.data[self.trials_var_name]
         
         
-        # PyMC Model Coordinates (i.e., Dimension) + Observation Indices
+        # PyMC Model Coordinates (i.e., Dimensions) + Observation Indices
         # Quite a few things to unpack. Create atom with parentheses to gather.
         (
             self.groups_IDx, self.groups_IDchar,
