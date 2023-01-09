@@ -22,7 +22,7 @@ class PymcModelBuilder:
         """
         Initialise an instance of PymcModelBuilder. This class is used to build
         and fit PyMC models in an objected-oriented fashion. My approach leans
-        into the typical use of pm.model() whereby it is used alongside the
+        into the typical calling of pm.model() whereby it is used alongside the
         "with" keyword to create a context manager for building out a model.
         
         It is assumed that PyMC has been imported as "pm".
